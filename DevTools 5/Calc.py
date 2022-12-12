@@ -1,3 +1,4 @@
+#new txt
 def calc(sign,a,b):
     for i in range(len(str(a))):
         if (str(a)[i] not in "0123456789" and i > 0):
