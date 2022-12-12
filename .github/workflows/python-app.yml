@@ -3,13 +3,12 @@
 
 name: Python application
 on:
-  release:
-    types: [published]
+  commit_comment:
+   - main
   # Запуск только при публиковании нового релиза
 
 jobs:
   run_tests:
-    # Первую джобу смело можем копипастить из экшена для тестирования
     runs-on: [ubuntu-latest]
     steps:
       # Чекаутим код
