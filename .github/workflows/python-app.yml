@@ -19,9 +19,11 @@ jobs:
         run: pip freeze > requirements.txt
       - name: Get Depeneces
         run: pip3 install -r requirements.txt
+      - name: Add Reporter
+        run: pip install coverage
       - name: Run tests
         # Запускаем тесты
-        run: coverage run DevTools 5/TestCalc.py
+        run: coverage run -m TestCalc.py
       - name: Tests report
         run: coverage report
 
