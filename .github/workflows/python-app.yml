@@ -16,7 +16,9 @@ jobs:
           python-version: '3.8'
           architecture: 'x64'
       - name: Inital Depeneces
-        run: pip install /usr/bin/bash requirements.txt 
+        run: pip freeze > requirements.txt
+      - name: Get Depeneces
+        run: pip3 install -r requirements.txt
       - name: Run tests
         # Запускаем тесты
         run: coverage run DevTools 5/TestCalc.py
