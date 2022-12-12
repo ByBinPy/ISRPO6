@@ -2,44 +2,29 @@
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
 name: Python application
-
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-permissions:
-  contents: read
+  release:
+    types: [published]
+  # Запуск только при публиковании нового релиза
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-name: Python Package using Conda
-
-on: [commit_comment]
-
-jobs:
-  build-linux:
-    runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 5
+  run_tests:
+    # Первую джобу смело можем копипастить из экшена для тестирования
+    runs-on: [ubuntu-latest]
     steps:
-  # Чекаутим код
-    - uses: actions/checkout@master
-     # Устанавливаем python нужной версии
-    - uses: actions/setup-python@v1
-      with:
-       python-version: '3.10'
-       architecture: 'x64'
-    - name: Install requirements
-     # Устанавливаем зависимости
-      run: pip install -r requirements.txt
-    - name: Run tests
-      run: coverage run DevTools 5/TestCalc.py
-    - name: Tests report
-      run: coverage report
-          conda install pytest
-          pytest
+      # Чекаутим код
+      - uses: actions/checkout@master
+      # Устанавливаем python нужной версии
+      - uses: actions/setup-python@v1
+        with:
+          python-version: '3.8'
+          architecture: 'x64'
+      - name: Install requirements
+        # Устанавливаем зависимости
+        run: pip install -r requirements.txt
+      - name: Run tests
+        # Запускаем тесты
+        run: coverage run src/tests.py
+      - name: Tests report
+        run: coverage report
 
