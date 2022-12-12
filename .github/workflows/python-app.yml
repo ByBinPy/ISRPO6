@@ -23,7 +23,7 @@ jobs:
         run: pip install coverage
       - name: Run tests
         # Запускаем тесты
-        run: coverage run TestCalc.py 
+        run: coverage run C:\Users\User\Documents\ISRPO6\DevTools 5\TestCalc.py 
       - name: Tests report
         run: coverage report
 
